@@ -1,0 +1,42 @@
+<section class="page">
+  <header class="page__header">
+    <h1 class="page__title">Events</h1>
+    <p class="page__subtitle">Browse and register for training events</p>
+  </header>
+
+  @if (events(); as list) {
+    <ul class="event-list">
+      @for (e of list; track e.id) {
+        <li class="event-card">
+          <div class="event-card__main">
+            <div class="event-card__top">
+              <h2 class="event-card__title">{{ e.title }}</h2>
+              <span class="event-card__status" [attr.data-status]="e.status">{{
+                statusLabel[e.status]
+              }}</span>
+            </div>
+            <p class="event-card__course">{{ e.courseName }}</p>
+            <p class="event-card__meta">
+              <span>{{ e.startsAt | date: 'MMM d, y, h:mm a' }}</span>
+              <span class="event-card__dot">•</span>
+              <span>{{ e.location }}</span>
+              <span class="event-card__dot">•</span>
+              <span>{{ e.seatsAvailable }} seats</span>
+            </p>
+          </div>
+          <div class="event-card__actions">
+            @if (e.isRegistered) {
+              <button type="button" class="event-card__btn event-card__btn--registered" disabled>
+                Registered
+              </button>
+            } @else {
+              <button type="button" class="event-card__btn">Register</button>
+            }
+          </div>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="page__loading" aria-live="polite">Loading events…</p>
+  }
+</section>

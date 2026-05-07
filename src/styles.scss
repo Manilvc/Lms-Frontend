@@ -1,0 +1,50 @@
+:root {
+  --app-sidebar: #1e293b;
+  --app-sidebar-text: #ffffff;
+  --app-bg: #f8fafc;
+  --app-surface: #ffffff;
+  --app-border: #e2e8f0;
+  --app-text: #0f172a;
+  --app-text-muted: #64748b;
+  --app-text-placeholder: #94a3b8;
+
+  --auth-primary: #1e3a5f;
+  --auth-primary-hover: #152a45;
+  --auth-on-primary: #ffffff;
+  --auth-bg-page: #eceff3;
+  --auth-surface: #ffffff;
+  --auth-border-subtle: #e2e6eb;
+  --auth-border-input: #dde1e6;
+  --auth-input-bg: #f4f5f7;
+  --auth-text-strong: #1e3a5f;
+  --auth-text-muted: #6b7280;
+  --auth-text-placeholder: #9ca3af;
+  --auth-danger: #b91c1c;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: var(--auth-bg-page);
+  color: var(--auth-text-strong);
+}

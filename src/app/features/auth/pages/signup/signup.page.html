@@ -1,0 +1,84 @@
+<app-auth-shell
+  title="NDDES / NDFA Training Portal"
+  subtitle="Create your account to get started."
+>
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="auth-field">
+      <label class="auth-label" for="signup-name">Full Name</label>
+      <input
+        id="signup-name"
+        class="auth-input"
+        type="text"
+        formControlName="fullName"
+        autocomplete="name"
+        placeholder="Jane Doe"
+      />
+      @if (form.controls.fullName.invalid && form.controls.fullName.touched) {
+        <p class="auth-error">
+          @if (form.controls.fullName.hasError('required')) {
+            Name is required.
+          } @else if (form.controls.fullName.hasError('minlength')) {
+            Enter at least 2 characters.
+          }
+        </p>
+      } @else {
+        <p class="auth-error" aria-hidden="true">&nbsp;</p>
+      }
+    </div>
+
+    <div class="auth-field">
+      <label class="auth-label" for="signup-email">Email</label>
+      <input
+        id="signup-email"
+        class="auth-input"
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+      />
+      @if (form.controls.email.invalid && form.controls.email.touched) {
+        <p class="auth-error">
+          @if (form.controls.email.hasError('required')) {
+            Email is required.
+          } @else if (form.controls.email.hasError('email')) {
+            Enter a valid email.
+          }
+        </p>
+      } @else {
+        <p class="auth-error" aria-hidden="true">&nbsp;</p>
+      }
+    </div>
+
+    <div class="auth-field">
+      <label class="auth-label" for="signup-password">Password</label>
+      <input
+        id="signup-password"
+        class="auth-input"
+        type="password"
+        formControlName="password"
+        autocomplete="new-password"
+        placeholder="••••••••"
+      />
+      @if (form.controls.password.invalid && form.controls.password.touched) {
+        <p class="auth-error">
+          @if (form.controls.password.hasError('required')) {
+            Password is required.
+          } @else if (form.controls.password.hasError('minlength')) {
+            At least 8 characters.
+          }
+        </p>
+      } @else {
+        <p class="auth-error" aria-hidden="true">&nbsp;</p>
+      }
+    </div>
+
+    <button class="auth-button-primary" type="submit" [disabled]="submitting()">
+      {{ submitting() ? 'Creating account…' : 'Create Account' }}
+    </button>
+  </form>
+
+  <p authFooter class="auth-footer-line">
+    <span class="auth-footer-text">Already have an account? </span>
+    <a routerLink="/login" class="auth-footer-link">Sign in</a>
+  </p>
+</app-auth-shell>

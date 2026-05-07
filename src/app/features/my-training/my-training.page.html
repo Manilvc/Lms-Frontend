@@ -1,0 +1,47 @@
+<section class="page">
+  <header class="page__header">
+    <h1 class="page__title">My Training</h1>
+    <p class="page__subtitle">Track your registrations and completed courses</p>
+  </header>
+
+  @if (items(); as _items) {
+    <div class="tabs" role="tablist" aria-label="Training sections">
+      <button
+        type="button"
+        class="tabs__item"
+        [class.is-active]="activeTab() === 'registrations'"
+        (click)="setTab('registrations')"
+      >
+        Registrations ({{ registrations().length }})
+      </button>
+      <button
+        type="button"
+        class="tabs__item"
+        [class.is-active]="activeTab() === 'completions'"
+        (click)="setTab('completions')"
+      >
+        Completions ({{ completions().length }})
+      </button>
+      <button
+        type="button"
+        class="tabs__item"
+        [class.is-active]="activeTab() === 'certificates'"
+        (click)="setTab('certificates')"
+      >
+        Certificates ({{ certificates().length }})
+      </button>
+    </div>
+
+    <article class="empty-state" [attr.data-tab]="activeTab()">
+      <div class="empty-state__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <path d="M16 2v4M8 2v4M3 10h18" />
+        </svg>
+      </div>
+      <p class="empty-state__text">{{ emptyMessage() }}</p>
+    </article>
+  } @else {
+    <p class="page__loading" aria-live="polite">Loading your training…</p>
+  }
+</section>

@@ -1,0 +1,36 @@
+<section class="page">
+  <header class="page__header">
+    <h1 class="page__title">Courses</h1>
+    <p class="page__subtitle">Browse available training courses</p>
+  </header>
+
+  @if (courses(); as list) {
+    <ul class="course-list">
+      @for (c of list; track c.id) {
+        <li class="course-card">
+          <div class="course-card__top">
+            <h2 class="course-card__title">{{ c.title }}</h2>
+            <span class="course-card__badge">{{ c.deliveryMode }}</span>
+          </div>
+          <p class="course-card__desc">{{ c.description }}</p>
+          <div class="course-card__meta">
+            <svg
+              class="course-card__clock"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 2" />
+            </svg>
+            <span class="course-card__minutes">{{ c.durationMinutes }} minutes</span>
+          </div>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="page__loading" aria-live="polite">Loading courses…</p>
+  }
+</section>
